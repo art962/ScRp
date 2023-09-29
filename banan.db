@@ -1,0 +1,17 @@
+
+with con:
+
+    data = con.execute("select count(*) from sqlite_master where type='table' and name='goods'")
+    for row in data:
+
+        if row[0] == 0:
+
+
+            with con:
+                con.execute("""
+                    CREATE TABLE goods (
+                        product VARCHAR(20) PRIMARY KEY,
+                        count INTEGER,
+                        price INTEGER
+                    );
+                """)
